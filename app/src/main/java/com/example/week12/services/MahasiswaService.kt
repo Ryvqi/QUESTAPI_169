@@ -1,5 +1,6 @@
 package com.example.week12.services
 
+import com.example.week12.model.Mahasiswa
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -24,5 +25,5 @@ interface MahasiswaService {
     suspend fun insertMahasiswa(@Body mahasiswa: Mahasiswa)
 
     @PUT("editMahasiswa.php/{nim}")
-    suspend fun updateMahasiswa(@Query("nim") nim: String, @Body)
+    suspend fun updateMahasiswa(@Query("nim") nim: String, @Body mahasiswa: Mahasiswa)
 }
