@@ -1,7 +1,9 @@
 package com.example.week12.services
 
 import com.example.week12.model.Mahasiswa
+import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.Headers
 import retrofit2.http.POST
@@ -26,4 +28,7 @@ interface MahasiswaService {
 
     @PUT("editMahasiswa.php/{nim}")
     suspend fun updateMahasiswa(@Query("nim") nim: String, @Body mahasiswa: Mahasiswa)
+
+    @DELETE("deleteMahasiswa.php/{nim}")
+    suspend fun deleteMahasiswa(@Query("nim") nim : String): Response<Void>
 }
