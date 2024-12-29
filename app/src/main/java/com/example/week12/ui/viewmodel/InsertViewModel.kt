@@ -10,6 +10,10 @@ import com.example.week12.repository.MahasiswaRepository
 class InsertViewModel (private val mhs: MahasiswaRepository): ViewModel(){
     var uiState by mutableStateOf(InserUiState())
         private set
+
+    fun updateInsertMhsState(inserUiEvent: InsertUiEvent){
+        uiState = InserUiState(inserUiEvent = inserUiEvent)
+    }
 }
 
 data class InserUiState(
