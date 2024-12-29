@@ -3,7 +3,7 @@ package com.example.week12.ui.viewmodel
 import com.example.week12.model.Mahasiswa
 
 data class InserUiState(
-    val inserUiState: InserUiState = InsertUiEvent()
+    val inserUiEvent: InsertUiEvent = InsertUiEvent()
 )
 
 data class InsertUiEvent(
@@ -22,4 +22,8 @@ fun InsertUiEvent.toMhs(): Mahasiswa = Mahasiswa(
     jenisKelamin = jenisKelamin,
     kelas = kelas,
     angkatan = angkatan,
+)
+
+fun Mahasiswa.toUiStateMhs(): InserUiState = InserUiState(
+    inserUiEvent = toInsertUiEvent()
 )
