@@ -4,8 +4,10 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.week12.model.Mahasiswa
 import com.example.week12.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
 
 class InsertViewModel (private val mhs: MahasiswaRepository): ViewModel(){
     var uiState by mutableStateOf(InserUiState())
@@ -13,6 +15,16 @@ class InsertViewModel (private val mhs: MahasiswaRepository): ViewModel(){
 
     fun updateInsertMhsState(inserUiEvent: InsertUiEvent){
         uiState = InserUiState(inserUiEvent = inserUiEvent)
+    }
+
+    suspend fun insertMhs(){
+        viewModelScope.launch {
+            try {
+                mhs.insertMahasiswa(uiState.inserUiEvent.toMhs())
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
     }
 }
 
