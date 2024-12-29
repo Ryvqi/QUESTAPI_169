@@ -13,8 +13,14 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
+import com.example.week12.navigation.DestinasiNavigasi
 import com.example.week12.ui.viewmodel.InserUiState
 import com.example.week12.ui.viewmodel.InsertUiEvent
+
+object DestinasiEntry: DestinasiNavigasi{
+    override val route = "item_entry"
+    override val titleRes = "Entry Mhs"
+}
 
 @Composable
 fun EntryBody(
