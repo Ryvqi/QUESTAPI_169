@@ -13,6 +13,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.example.week12.model.Mahasiswa
+import com.example.week12.navigation.DestinasiNavigasi
+
+object DestinasiDetail: DestinasiNavigasi{
+    override val route = "detail"
+    override val titleRes = "Detail Mhs"
+    const val NIM = "nim"
+    val routeWithArg = "$route/{$NIM}"
+}
 
 @Composable
 fun ItemDetail(
