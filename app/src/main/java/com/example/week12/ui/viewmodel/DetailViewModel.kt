@@ -5,8 +5,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import coil.network.HttpException
 import com.example.week12.model.Mahasiswa
 import com.example.week12.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
+import java.io.IOException
 
 sealed class DetailUiState{
     data class Success(
@@ -24,4 +28,21 @@ class DetailViewModel(
         private set
 
     private val _nim: String = checkNotNull(savedStateHandle[DestinasiDetail.NIM])
+
+    init {
+        getMahasiswabynim()
+    }
+
+    fun getMahasiswabynim(){
+        viewModelScope.launch {
+            mhsUiState = DetailUiState.Loading
+            mhsUiState = try {
+                DetailUiState.Success(mhs.getMahasiswabynim(_nim))
+            } catch (e: IOException){
+                DetailUiState.Error
+            } catch (e: HttpException){
+                DetailUiState.Error
+            }
+        }
+    }
 }
