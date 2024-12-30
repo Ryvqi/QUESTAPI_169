@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.week12.model.Mahasiswa
 import com.example.week12.repository.MahasiswaRepository
+import com.example.week12.ui.view.DestinasiUpdate
 import kotlinx.coroutines.launch
 
 class UpdateViewModel (
@@ -35,6 +36,10 @@ class UpdateViewModel (
                 e.printStackTrace()
             }
         }
+    }
+
+    fun updateState(insertUiEvent: InsertUiEvent){
+        uiState = uiState.copy(inserUiEvent = insertUiEvent)
     }
 }
 
