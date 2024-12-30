@@ -18,6 +18,24 @@ class UpdateViewModel (
         private set
 
     private val _nim: String = checkNotNull(savedStateHandle[DestinasiUpdate.NIM])
+
+    init {
+        viewModelScope.launch {
+            val mahasiswa = mhs.getMahasiswabynim(_nim)
+            uiState = mahasiswa.toInserUiEvent()
+        }
+    }
+
+    fun updateMahasiswa(){
+        viewModelScope.launch {
+            try {
+                val mahasiswa = uiState.inserUiEvent.toMhs()
+                mhs.updateMahasiswa(_nim, mahasiswa)
+            } catch (e: Exception){
+                e.printStackTrace()
+            }
+        }
+    }
 }
 
 fun Mahasiswa.toInserUiEvent(): InserUiState = InserUiState(
