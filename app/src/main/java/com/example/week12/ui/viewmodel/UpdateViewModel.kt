@@ -5,7 +5,10 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
 import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.example.week12.model.Mahasiswa
 import com.example.week12.repository.MahasiswaRepository
+import kotlinx.coroutines.launch
 
 class UpdateViewModel (
     savedStateHandle: SavedStateHandle,
@@ -16,3 +19,7 @@ class UpdateViewModel (
 
     private val _nim: String = checkNotNull(savedStateHandle[DestinasiUpdate.NIM])
 }
+
+fun Mahasiswa.toInserUiEvent(): InserUiState = InserUiState(
+    inserUiEvent = this.toDetailUiEvent()
+)
