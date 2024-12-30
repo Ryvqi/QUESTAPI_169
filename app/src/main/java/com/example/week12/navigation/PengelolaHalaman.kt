@@ -16,7 +16,7 @@ import com.example.week12.ui.view.HomeScreen
 import com.example.week12.ui.view.UpdateScreen
 
 @Composable
-fun PengelolaHalaman(navController: NavHostController = rememberNavController()){
+fun PengelolaHalaman(modifier: Modifier = Modifier,navController: NavHostController = rememberNavController()){
     NavHost(
         navController = navController,
         startDestination = DestinasiHome.route,
