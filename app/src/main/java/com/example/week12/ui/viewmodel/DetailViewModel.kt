@@ -47,3 +47,14 @@ class DetailViewModel(
         }
     }
 }
+
+fun Mahasiswa.toDetailUiEvent(): InsertUiEvent{
+    return InsertUiEvent(
+        nim = nim,
+        nama = nama,
+        alamat = alamat,
+        jenisKelamin = jenisKelamin,
+        kelas = kelas,
+        angkatan = angkatan,
+    )
+}
